@@ -4,9 +4,9 @@ from google.oauth2.service_account import Credentials as cd
 
 def fetch_client_infos():
 
-    scopes = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
+    
 
-    credentials = cd.from_service_account_info(data.json_data, scopes=scopes)
+    credentials = cd.from_service_account_info(data.json_data, scopes=data.scopes)
 
     client = gspread.Client(auth=credentials)
     client.session.verify = True  # Enable SSL certificate verification if needed
