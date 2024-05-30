@@ -1,0 +1,15 @@
+{% if userdata['logotypes'] != {} %}
+<section>
+        <div class="musthave-container">
+        {% for key, value in userdata['flyer'].items() %}
+        <a class="musthave-link" href="https://drive.google.com/uc?export=download&id={{ value }}">
+            <div class="musthave-item">
+                <img class="musthave-img" src="/static/img/logotypes.svg" alt="preprint">
+                <h1 class="musthave-name">{{ key }}</h1>
+            </div>
+        </a>
+        {% endfor %}
+        </div>
+
+</section>
+{% endif %}

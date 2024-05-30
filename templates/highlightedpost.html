@@ -1,0 +1,16 @@
+<section class="highlighted">
+    <div class="post">
+        <div class="swiper-container" data-id="{{ userdata['highlighted_post_zip'] }}">
+            <div class="swiper-wrapper">
+                {% for image in userdata['highlighted_image_ids'][0] %}
+                    <div class="swiper-slide">
+                        <!-- <a href="https://drive.google.com/uc?export=download&id={{ image }}" target="_blank"> -->
+                            <img src="https://drive.google.com/uc?export=view&id={{ image }}" alt="{{ image }}">
+                        <!-- </a> -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+

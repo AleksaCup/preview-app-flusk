@@ -1,0 +1,98 @@
+<style>
+    .client-infos{
+        /* width: 80%; */
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .infos-first{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .name{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 200px;
+    }
+    
+    .currentplan{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        padding-right: 40px;
+    }
+
+    .plantype{
+        font-size: 50px;
+        font-family: 'Saol Display Italic';
+        color: #E82760;
+        font-weight: 400;
+        margin: 0;
+        text-align: center;
+    }
+    .plantitle{
+        margin: 0;
+        font-size: 40px;
+        font-family: 'Saol Display Regular';
+        color: white;
+        font-weight: 400;
+    }
+
+    .namefield{
+        font-family: "Saol Display Regular";
+        font-size: 50px;
+        font-weight: 400;
+        color: white;
+        margin: 0;
+    }
+
+    .surnamefield{
+        font-family: "Saol Display Italic";
+        font-size: 50px;
+        font-weight: 400;
+        color: #E82760;
+        margin: 0;
+    }
+
+    .biography{
+        color: white;
+        padding: 10px 100px 50px 0;
+    }
+
+    .profilephoto{
+        display: flex;
+    }
+    .profilephoto > a, .profilephoto > a > img{
+        width: 300px;
+        border-radius: 50%;
+    }
+</style>
+
+<section class="client-infos">
+    <div class="infos-first">
+        <div class="name">
+            <h1 class="namefield">{{ userdata['name'] }}</h1>
+            <h1 class="surnamefield">{{ userdata['surname'] }}</h1>
+        </div>
+        <div class="profilephoto">
+            <a href="https://drive.google.com/uc?export=download&id={{ userdata['profile_image'] }}">
+                <img src="https://drive.google.com/uc?export=view&id={{ userdata['profile_image'] }}" alt="profile image">
+            </a>
+        </div>
+        <div class="currentplan">
+            <h1 class="plantitle">Your plan:</h1>
+            <h1 class="plantype">{{ userdata['plan'] }}</h1>
+        </div>
+    </div>
+
+    <div class="infos-second">
+        <p class="biography">{{ userdata['bio'] }}</p>
+    </div>
+    
+</section>

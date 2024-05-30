@@ -1,0 +1,125 @@
+<style>
+    .musthave-item{
+        display: flex;
+        justify-content: center;
+        border: 4px solid #E82760;
+        border-radius: 20px;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .musthave-container{
+        display: flex;
+        gap: 20px;
+    }
+
+    .musthave-img{
+        height: 150px;
+        padding: 20px;
+    }
+    .musthave-name{
+        color: white;
+        font-family: "Saol Display Regular";
+        font-size: 25px;
+        padding-top: 25px;
+        text-align: center;
+        
+    }
+    .musthave-link{
+        text-decoration: none;
+    }
+    .section-text{
+        color: white;
+        font-family: "Saol Display Regular";
+        font-size: 30px;
+    }
+
+
+
+</style>
+
+{% if userdata['plan'] != "Basic Plan" %}
+<section>
+    {% if userdata['presentations'] != {} %}
+        <h1 class="section-text">Presentations</h1>
+        <div class="musthave-container">
+        {% for key, value in userdata['presentations'].items() %}
+        <a class="musthave-link" href="https://docs.google.com/presentation/d/{{ value }}/export/pptx">
+            <div class="musthave-item">
+                <img class="musthave-img" src="/static/img/presentation.svg" alt="presentation">
+                <h1 class="musthave-name">{{ key }}</h1>
+            </div>
+        </a>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if userdata['pdfs'] != {} %}
+        <h1 class="section-text">PDFs</h1>
+        <div class="musthave-container">
+        {% for key, value in userdata['pdfs'].items() %}
+        <a class="musthave-link" href="https://drive.google.com/uc?export=download&id={{ value }}">
+            <div class="musthave-item">
+                <img class="musthave-img" src="/static/img/pdf.svg" alt="pdf">
+                <h1 class="musthave-name">{{ key }}</h1>
+            </div>
+        </a>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if userdata['preprint'] != {} %}
+        <h1 class="section-text">Preprint</h1>
+        <div class="musthave-container">
+        {% for key, value in userdata['preprint'].items() %}
+        <a class="musthave-link" href="https://drive.google.com/uc?export=download&id={{ value }}">
+            <div class="musthave-item">
+                <img class="musthave-img" src="/static/img/preprint.svg" alt="preprint">
+                <h1 class="musthave-name">{{ key }}</h1>
+            </div>
+        </a>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if userdata['logotypes'] != {} %}
+        <h1 class="section-text">Logotypes</h1>
+        <div class="musthave-container">
+        {% for key, value in userdata['logotypes'].items() %}
+        <a class="musthave-link" href="https://drive.google.com/uc?export=download&id={{ value }}">
+            <div class="musthave-item">
+                <img class="musthave-img" src="/static/img/logotypes.svg" alt="preprint">
+                <h1 class="musthave-name">{{ key }}</h1>
+            </div>
+        </a>
+        {% endfor %}
+        </div>
+    {% endif %}
+</section>
+{% else %}
+<section>
+
+    <div class="locked">
+        <img src="/static/img/padlock.svg" alt="locked">
+        <h1 class="locked-text">You do not have access to this section with your current plan: <span class="plantext">{{ userdata['plan'] }}</span>.</h1>
+        <h1 class="locked-text">Contact Markephing to upgrade it!</h1>
+        <a href="mailto:mima@markephing.com" class="contactus">Contact us</a>
+
+    </div>
+
+    {% if userdata['logotypes'] != {} %}
+        <h1 class="section-text">Logotypes</h1>
+        <div class="musthave-container">
+        {% for key, value in userdata['logotypes'].items() %}
+        <a class="musthave-link" href="https://drive.google.com/uc?export=download&id={{ value }}">
+            <div class="musthave-item">
+                <img class="musthave-img" src="/static/img/logotypes.svg" alt="preprint">
+                <h1 class="musthave-name">{{ key }}</h1>
+            </div>
+        </a>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+</section>
+{% endif %}

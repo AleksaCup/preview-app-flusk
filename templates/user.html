@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% if userdata is not none %}
+<html>
+<head>
+    <title>{{ userdata['name'] }} {{userdata['surname'] }}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/body.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- userdata['sharing-image'] -->
+    <meta property="og:image" content="https://phistock.com/wp-content/uploads/2023/07/PhiStock-sharing-link.png">
+</head>
+<body>    
+
+    <div class="logo">
+        <img src="/static/img/markephinglogo.png" alt="logo">
+    </div>
+
+    <div class="timeline">
+
+        <div class="section">
+          <h3 class="section-title">Profile</h3>
+          <div class="section-content">
+            {% include 'userinfo.html' %}
+          </div>
+        </div>
+
+        {% if userdata['highlights'] == 'TRUE' %}
+        <div class="section">
+            <h3 class="section-title">Highlights</h3>
+            <div class="section-content">
+              {% include 'highlights.html' %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if userdata['highlighted_post'] == 'TRUE' %}
+        <div class="section">
+            <h3 class="section-title">Most important post</h3>
+            <div class="section-content">
+              {% include 'highlightedpost.html' %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if userdata['grid'] == 'TRUE' %}
+        <div class="section">
+            <h3 class="section-title">Grid</h3>
+            <div class="section-content">
+              {% include 'grid.html' %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if userdata['must_have'] == 'TRUE' %}
+        <div class="section">
+            <h3 class="section-title">Must Have</h3>
+            <div class="section-content">
+              {% include 'musthave.html' %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if userdata['ads'] == 'TRUE' %}
+        <div class="section">
+            <h3 class="section-title">Ads</h3>
+            <div class="section-content">
+              {% include 'ads.html' %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if userdata['flyers'] == 'TRUE' %}
+        <div class="section">
+            <h3 class="section-title">Flyers</h3>
+            <div class="section-content">
+              {% include 'flyers.html' %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+          <div id="lightbox-media"></div>
+  
+          <div class="lightbox-controls">
+              <button id="download-all">Download post</button>
+          </div>
+      </div>
+      <span class="close-lightbox" id="close-lightbox">&times;</span>
+    </div>
+    
+
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="../static/javascript/javascript.js"></script>
+    <script src="../static/javascript/timeline.js"></script>
+</body>
+</html>
+{% endif %}

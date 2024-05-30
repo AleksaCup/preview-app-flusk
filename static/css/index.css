@@ -1,0 +1,213 @@
+.grid {
+    /* max-width: 80%; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /*dodato*/
+    gap: 8px 8px; /*dodato*/
+    margin: auto; /* Negative margin to counteract the padding on .post elements */
+    
+}
+
+.post {
+    /*flex: 0 0 calc(33.333% - 10px); /* One third minus the total padding (2*5px) */
+    /* padding: 5px;
+    display: flex;
+    justify-content: center; */
+
+    flex: 0 0 ;  /* One-third of the container width, accounting for gaps */
+    /* min-width: calc(33.333% - 16px);  One-third of the container width, accounting for gaps */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .post {
+        min-width: calc(50% - 16px);  /* Half of the container width, accounting for gaps */
+    }
+}
+
+/* For mobile and smaller screens */
+@media (max-width: 480px) {
+    .post {
+        min-width: 100%;  /* Full width */
+    }
+}
+
+
+.swiper-container {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center */
+    width: 250px; /* Explicitly set width to ensure it doesn't expand */
+    height: 250px; /* Explicitly set height */
+}
+
+.swiper-slide img {
+    max-width: 250px;
+    max-height: 250px;
+    display: block; /* Remove any extra space below the image */
+}
+
+.hidden {
+    display: none;
+}
+
+#toggle-button{
+    background: linear-gradient(to right, #161616, #424141);
+    color: #E82760;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    width: 40%;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    border-radius: 45px;
+    padding: 20px 40px;
+}
+
+.toggle-button-div{
+    justify-content: center;
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+}
+
+
+
+/* lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+.lightbox-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 80px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.lightbox .swiper-container {
+    width: 600px;  /* Adjust as necessary */
+    height: 600px;  /* Adjust as necessary */
+}
+
+.lightbox .swiper-slide {
+    width: 600px;  /* Adjust if you have specific slide sizes */
+    height: 600px;  /* Adjust if you have specific slide sizes */
+}
+
+.lightbox img, .lightbox video {
+    max-width: 100%;  /* Ensure media elements scale with their containers */
+    max-height: 100%;
+}
+
+.lightbox-controls{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+#download-all{
+    padding: 10px 25px;
+    color: white;
+    font-size: 25px;
+    border-radius: 25px;
+    border: 2px solid #E82760;
+    background: linear-gradient(to right, #161616, #424141);
+}
+
+
+
+
+.video-container {
+    position: relative;
+}
+
+.video-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-loader::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 5px solid #ccc;
+    border-radius: 50%;
+    border-top-color: #000;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+/* LOCKED CONTAINER */
+.locked{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background-color: #E82760;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+.locked > img{
+    display: flex;
+    height: 250px;
+    justify-content: center;
+}
+.contactus{
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-family: 'Saol Display Regular';
+}
+.plantext{
+    font-family: 'Saol Display Italic';
+    color: white;
+}
+.locked-text{
+    text-align: center;
+    font-size: 30px;
+}

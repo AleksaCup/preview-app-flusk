@@ -1,0 +1,61 @@
+<style>
+    .titlesection{
+        text-align: center;
+        font-family: "Saol Display Regular";
+        color: white;
+    }
+    .campaigncontainer{
+        padding: 20px;
+        border: 4px solid #E82760;
+        border-radius: 20px;
+        margin-bottom: 15px;
+    }
+
+    .social{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 20px 0;
+    }
+
+    .icon{
+        width: 80px;
+    }
+
+</style>
+
+{% if userdata['plan'] == "Exclusive Online Marketing" %}
+<section>
+    {% for event in userdata['events'] %}
+        <div class="campaigncontainer">
+            <h1 class="titlesection">{{ event['event'] }}</h1>
+            <div class="social">
+                {% if  event['facebook_link'] != [] %}
+
+                {% for link in event['facebook_link'] %}
+                <a href="{{ link }}" target="_blank">
+                    <img class="icon" src="/static/img/pikto2.png" alt="">
+                </a>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="social">
+                {% if  event['instagram_link'] != [] %}
+                {% for link in event['instagram_link'] %}
+                <a href="{{ link }}" target="_blank">
+                    <img class="icon" src="/static/img/pikto1.png" alt="">
+                </a>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</section>
+{% else %}
+    <div class="locked">
+        <img src="/static/img/padlock.svg" alt="locked">
+        <h1 class="locked-text">You do not have access to this section with your current plan: <span class="plantext">{{ userdata['plan'] }}</span>.</h1>
+        <h1 class="locked-text">Contact Markephing to upgrade it!</h1>
+        <a href="mailto:mima@markephing.com" class="contactus">Contact us</a>
+
+    </div>
+{% endif %}

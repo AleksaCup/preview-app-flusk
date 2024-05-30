@@ -1,0 +1,27 @@
+<style>
+    .highlight{
+        border-radius: 50%;
+    }
+    .highlight_photo{
+        border-radius: 50%;
+    }
+    .swiper-highlights{
+        overflow: hidden;
+    }
+</style>
+
+<section class="highlighted">
+    <div class="post highlight">
+        <div class="swiper-highlights">
+            <div class="swiper-wrapper">
+                {% for image in userdata['highlights_ids'] %}
+                    <div class="swiper-slide">
+                        <a href="https://drive.google.com/uc?export=download&id={{ image }}">
+                            <img class="highlight_photo" src="https://drive.google.com/uc?export=view&id={{ image }}" alt="{{ image }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

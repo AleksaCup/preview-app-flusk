@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timeline Example</title>
+  <style>
+    @font-face {
+        font-family: 'Saol Display Regular';  /* Define a name to use later */
+        src: url('/static/fonts/SaolDisplay-Regular.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Saol Display Italic';  /* Define a name to use later */
+        src: url('/static/fonts/SaolDisplay-Italic.ttf') format('truetype');
+    }
+    body{
+        background-color: #424141;
+    }
+    .logo{
+        height: 100px;
+        padding: 30px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    /* Container for the timeline */
+    .timeline {
+      position: relative;
+      /* max-width: 800px; */
+      margin: 0 auto;
+    }
+
+    /* Create a left-side line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 24px;  /* Adjusted to center with the node */
+      width: 4px;
+      background-color: #f3f3f3;
+    }
+
+    /* Container for each section */
+    .section {
+      padding-left: 20px;
+      position: relative;
+      margin-left: 40px;
+      background-color: transparent;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Section title next to the node */
+    .section-title {
+      font-family: "Saol Display Regular";
+      font-weight: 400;
+      font-size: 45px;
+      color: #E82760;
+      top: -30px;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      align-self: flex-start;
+    }
+
+
+    /* Node for each section */
+    .section::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -5px;  /* Adjusted */
+      width: 8px;
+      height: 8px;
+      background-color: #f3f3f3;
+      border-radius: 50%;
+    }
+
+    /* Horizontal line connecting node to timeline */
+    .section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -15px;  /* Adjusted */
+      width: 10px;
+      height: 2px;
+      background-color: #f3f3f3;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="/static/img/markephinglogo.png" alt="logo">
+    </div>
+
+    <div class="timeline">
+        <div class="section">
+          <h3 class="section-title">Section 1</h3>  <!-- Flask will replace this -->
+          <div class="section-content">
+            <p>Content for section 1</p>
+          </div>
+        </div>
+        <div class="section">
+          <h3 class="section-title">Section 2</h3>  <!-- Flask will replace this -->
+          <div class="section-content">
+            <p>Content for section 2</p>
+          </div>
+        </div>
+        <!-- ... -->
+    </div>
+
+</body>
+</html>

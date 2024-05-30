@@ -1,0 +1,103 @@
+<!-- <section class="grid">
+    {% set ns = namespace(post_num=0) %}
+    {% for folder, images in userdata['grid_image_ids'].items() %}
+        {% set ns.post_num = ns.post_num + 1 %}
+        <div class="post {% if ns.post_num > 9 %}hidden{% endif %}">
+            <div class="swiper-container" data-id="{{ userdata['grid_folders_ids'][ns.post_num-1]['id']}}">
+                <div class="swiper-wrapper">
+                    {% set nsi = namespace(image_idx = 0) %}
+                    {% for image in images %}
+                        <div class="swiper-slide">
+                             <h1 style="text-align: center;">{{ ns.post_num }}</h1> 
+                             <a href="https://drive.google.com/uc?export=view&id={{ image }}" target="_blank"> 
+                                {% if userdata['grid_mimetypes'][folder][nsi.image_idx].startswith('image/') %}
+                                    <img src="https://drive.google.com/uc?export=view&id={{ image }}" alt="{{ image }}">
+                                {% elif userdata['grid_mimetypes'][folder][nsi.image_idx].startswith('video/') %}
+                                    <video autoplay loop muted>
+                                        <source src="https://drive.google.com/uc?export=view&id={{ image }}" type="{{ userdata['grid_mimetypes'][folder][nsi.image_idx] }}">
+                                    </video>
+                                {% endif %}
+                             </a> 
+                        </div>
+                        {% set nsi.image_idx = nsi.image_idx + 1 %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</section> -->
+
+<style>
+    .slider-row {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .post {
+        flex-basis: calc(33.333% - 5px); /* Equal width for each slider and 5px space between */
+        box-sizing: border-box;
+        position: relative;
+        /* padding-bottom: 100%; 1:1 aspect ratio */
+        margin: 0 2.5px; /* Equal spacing of 5px between sliders */
+    }
+
+    .swiper-slide img, 
+    .swiper-slide video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+
+<section class="grid">
+    {% set ns = namespace(post_num=0) %}
+    <div class="slider-row">  <!-- Open one horizontal container -->
+    {% for folder, images in userdata['grid_image_ids'].items() %}
+        {% set ns.post_num = ns.post_num + 1 %}
+        <div class="post {% if ns.post_num > 9 %}hidden{% endif %}">
+            <div class="swiper-container" data-id="{{ userdata['zip_ids'][userdata['grid_folders_ids'][ns.post_num-1]['id']] }}">
+                <div class="swiper-wrapper">
+                    {% set nsi = namespace(image_idx = 0) %}
+                    {% for image in images %}
+                        <div class="swiper-slide">
+                            {% if userdata['grid_mimetypes'][folder][nsi.image_idx].startswith('image/') %}
+                                <img class="grid-img" src="https://drive.google.com/uc?export=view&id={{ image }}" alt="{{ image }}">
+                            {% elif userdata['grid_mimetypes'][folder][nsi.image_idx].startswith('video/') %}
+                                <div class="video-loader" id="video-loader"></div>
+                                <video class="grid-video" autoplay loop muted oncanplay="hideLoader();">
+                                    <source src="https://drive.google.com/uc?export=view&id={{ image }}" type="{{ userdata['grid_mimetypes'][folder][nsi.image_idx] }}">
+                                </video>
+                            {% endif %}
+                        </div>
+                        {% set nsi.image_idx = nsi.image_idx + 1 %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- After every 3rd post, close the current row and open a new one -->
+        {% if ns.post_num % 3 == 0 %}
+            </div>
+            <div class="slider-row {% if ns.post_num > 9 %}hidden{% endif %}"> <!-- Open a new horizontal container -->
+        {% endif %}
+
+    {% endfor %}
+    </div> <!-- Close the last horizontal container -->
+</section>
+
+
+
+
+{% if ns.post_num > 9 %}
+<div class="toggle-button-div">
+    <button id="toggle-button">Load More</button>
+</div>
+{% endif %}
+
+
+
+
+
+
